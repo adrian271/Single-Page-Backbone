@@ -8,6 +8,7 @@ var path = require('path');
 var app = express();
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs');
+app.use(express.static('public'));
 
 app.use('/',function(req,res){
     res.render('index');
@@ -23,7 +24,8 @@ app.use('/api',function(req,res){[
 ]});
 
 var port = process.env.PORT || 3500
-; //sets port depending on environment, otherwise port 3000
+; //sets port depending on environment, otherwise port 3500
+
 
 app.listen(port, function(){
     console.log("Listening on localhost:"+port);

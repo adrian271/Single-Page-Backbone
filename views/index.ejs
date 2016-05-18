@@ -16,12 +16,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"></script>
+    <script src="/data.js"></script>
     <script>
 
-        // $.ajaxPrefilter(function(options,originalOptions,jqXHR){
-        //     options.url = 'http://backbonejs-beginner.herokuapp.com'+options.url;
-        // });
-
+        // // $.ajaxPrefilter(function(options,originalOptions,jqXHR){
+        // //     options.url = 'http://backbonejs-beginner.herokuapp.com'+options.url;
+        // // });
+        //
         var Users = Backbone.Collection.extend({
             url: '/users'
         });
@@ -29,7 +30,13 @@
         var UserList = Backbone.View.extend({
             el: '.page',
             render: function(){
-                this.$el.html('!CONTENT SHOULD SHOW HERE')
+                var that = this;
+                var users = new Users;
+                users.fetch({
+                    success: function(){
+                        that.$el.html('!CONTENT SHOULD SHOW HERE')
+                    }
+                });
             }
         });
 
